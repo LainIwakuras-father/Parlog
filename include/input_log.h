@@ -135,9 +135,10 @@ namespace Input
     private:
         InputLog inputLog_;
     };
+	
 }
 
-#endif // INPUT_LOG_H
+#endif // INPUT_LOG_H 
 
 
 // Input::InputLog log = Input::InputLogBuilder()
