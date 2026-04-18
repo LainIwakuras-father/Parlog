@@ -3,8 +3,8 @@
 #include <sstream>
 #include <string>
 
-// 2513826 PrimFSM.cpp(37) FSM: Sg.SIP.UA id: 2621; > St: 0 NUL Pr: 38418:21 SIP_UA_OPTIONS_REQ ()
-// 2026-01-12 09:06:03.384
+// 2026-01-12 09:06:03.384 2513826 PrimFSM.cpp(37) FSM: Sg.SIP.UA id: 2621; > St: 0 NUL Pr: 38418:21 SIP_UA_OPTIONS_REQ ()
+
 
 struct timestamp
 {    
@@ -53,9 +53,24 @@ struct timestamp
     }
 };
 
+auto parce(const std::string& path)
+{
+    std::fstream raw_file(path);
+
+    std::string line;
+
+    while(std::getline(raw_file, line))
+    {
+        std::stringstream ss(line);
+        ss >> timestamp
+    }
+}
+
+// 2026-01-12 09:06:03.384 2513826 PrimFSM.cpp(37) FSM: Sg.SIP.UA id: 2621; > St: 0 NUL Pr: 38418:21 SIP_UA_OPTIONS_REQ ()
+
 int main()
 {
-    std::string raw = "2026-01-12 09:06:03.384 2026-02-11 19:06:03.084";
+    std::string raw = "2026-01-12 09:06:03.384 2513826 PrimFSM.cpp(37) FSM: Sg.SIP.UA id: 2621; > St: 0 NUL Pr: 38418:21 SIP_UA_OPTIONS_REQ ()";
     
     // One stream for all parcing
     std::stringstream ss(raw);
