@@ -48,12 +48,10 @@ namespace Input
         std::string state = "0";
     };
 
-    // Сначала объявляем InputLog
     class InputLog {
     public:
         InputLog();
         
-        // Геттеры
         Timestamp getTimestamp() const { return timestamp; }
         std::string getFileLocation() const { return file_location; }
         std::string getJournal() const { return journal; }
@@ -118,8 +116,10 @@ namespace Input
             return *this;
         }
         
-        InputLogBuilder& InputMess(const InputMess& mess) {
-            inputLog_.inputMess = mess;
+        InputLogBuilder& InputMess(int prFirst, int prSecond, std::string mess) {
+            inputLog_.inputMess.prFirst = prFirst;
+			inputLog_.inputMess.prSecond = prSecond;
+			inputLog_.inputMess.mess = mess;
             return *this;
         }
         
@@ -138,3 +138,16 @@ namespace Input
 }
 
 #endif // INPUT_LOG_H
+
+
+// Input::InputLog log = Input::InputLogBuilder()
+//         .Data(2026, 4, 10)                              // Дата
+//         .Time(11, 27, 45, 988)                          // Время
+//         .FileLocation("PrimFSM.cpp(37)")                // Файл и строка
+//         .Journal("FSM")                                 // Журнал
+//         .LogicName("SubscribeLogic.0.61bf91b400000002") // Имя логики
+//         .LogicID(0)                                     // ID логики
+//         .CurrentState("INIT_WAIT_STORAGE_CONF")         // Состояние
+//         .InputMess(38405, 11, "SIP_TR_SUBSCRIBE_IND")   // ✅ PrFirst, PrSecond, mess
+//         .AddInfo("(Event: test Expires: 120)")          // Доп инфа
+//         .build();  
